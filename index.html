@@ -16,7 +16,26 @@
      </header>
 
      <!-- Main content area -->
-      <main></main>
+      <main>
+
+    <!-- Game settings including difficulty, score, highscore, and timer -->
+        <section class="game-settings">
+            <div class="settings-left">
+                <label for="difficulty">Difficulty:</label>
+                <select id="difficulty">
+                    <option value="easy">Easy</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+            <div class="settings-right">
+                <div class="score-display">Score: <span id="score">0</span></div>
+                <div class="highscore-display">Highscore: <span id="highscore">0</span></div>
+                <div class="time-display">Time Left: <span id="timeLeft">60</span>s</div>
+            </div>
+        </section>
+
+      </main>
     
 </body>
 </html>
