@@ -1,0 +1,247 @@
+/*==============================
+  CSS Variables & Global Reset
+==============================*/
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2980b9;
+    --bg-color-light: #ecf0f1;
+    --bg-color-dark: #2c3e50;
+    --text-color-light: #2c3e50;
+    --text-color-dark: #ecf0f1;
+    --accent-color: #e74c3c;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Default (Light) Theme */
+body {
+    background: var(--bg-color-light);
+    color: var(--text-color-light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background var(--transition-speed), color var(--transition-speed);
+}
+
+/* Dark Theme */
+body.dark-theme {
+    background: var(--bg-color-dark);
+    color: var(--text-color-dark);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #bdc3c7;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 4px;
+}
+
+/*==============================
+  Layout & Structure
+==============================*/
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.theme-toggle {
+    padding: 8px 12px;
+    background: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: transform var(--transition-speed);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.05);
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    max-width: 1200px;
+    width: 90%;
+    margin: 20px auto;
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    gap: 20px;
+    justify-items: center;
+}
+
+/* Game Settings */
+.game-settings {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    padding: 10px;
+}
+
+.settings-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.settings-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.score-display,
+.highscore-display,
+.time-display {
+    font-weight: bold;
+}
+
+/* Game Controls */
+.game-controls {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.control-btn {
+    min-width: 180px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.control-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.control-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Game Area & Overlay */
+.game-area-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.game-area {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Countdown Overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.overlay span {
+    font-size: 4rem;
+    color: #fff;
+}
+
+/* Falling Letters */
+.falling-letter {
+    position: absolute;
+    top: -50px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    animation: fall linear;
+}
+
+@keyframes fall {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(550px);
+    }
+}
+
+/* Footer */
+footer {
+    background: var(--primary-color);
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .overlay span {
+        font-size: 3rem;
+    }
+
+    header h1,
+    footer p {
+        font-size: 1.5rem;
+    }
+
+    .control-btn {
+        min-width: 140px;
+    }
+}
